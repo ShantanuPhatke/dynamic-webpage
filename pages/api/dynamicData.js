@@ -45,43 +45,38 @@ const STYLES_WHATSAPP_BUTTON = {
 }
 
 export default function handler(req, res) {
-  if (req.method === "GET") res.status(200).json({ health: "Ok" })
+  if (req.method === "GET") return res.status(200).json({ health: "Ok" })
 
   if (req.method === "POST") {
     if (req.body.utm_campaign === "generic") {
       switch (req.body.utm_source) {
         case "linkedin":
-          res.status(200).json({
+          return res.status(200).json({
             elements: [DYNAMIC_CONTENT, DYNAMIC_BUTTON],
             styles: [STYLES_LINKEDIN, STYLES_LINKEDIN_BUTTON],
           })
-          break
         case "facebook":
-          res.status(200).json({
+          return res.status(200).json({
             elements: [DYNAMIC_CONTENT, DYNAMIC_BUTTON],
             styles: [STYLES_FACEBOOK, STYLES_FACEBOOK_BUTTON],
           })
-          break
         case "instagram":
-          res.status(200).json({
+          return res.status(200).json({
             elements: [DYNAMIC_CONTENT, DYNAMIC_BUTTON],
             styles: [STYLES_INSTAGRAM, STYLES_INSTAGRAM_BUTTON],
           })
-          break
         case "whatsapp":
-          res.status(200).json({
+          return res.status(200).json({
             elements: [DYNAMIC_CONTENT, DYNAMIC_BUTTON],
             styles: [STYLES_WHATSAPP, STYLES_WHATSAPP_BUTTON],
           })
-          break
 
         default:
-          res.status(200).json({
+          return res.status(200).json({
             elements: [DYNAMIC_CONTENT, DYNAMIC_BUTTON],
           })
-          break
       }
     }
   }
-  res.status(200).json(null)
+  return res.status(200).json(null)
 }
