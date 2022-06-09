@@ -10,7 +10,11 @@ export default function Home() {
   const [hasLoaded, setHasLoaded] = React.useState(false)
 
   React.useEffect(() => {
-    if (!router.query || Object.keys(router.query).length === 0) return
+    if (!router.query || Object.keys(router.query).length === 0) {
+      setHasLoaded(true)
+      return
+    }
+
     fetch("/api/dynamicData", {
       method: "POST",
       headers: {
